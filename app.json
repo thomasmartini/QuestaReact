@@ -4,9 +4,9 @@
     "slug": "TutorialReactNative",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/questa.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashimg.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
