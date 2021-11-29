@@ -1,13 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Tts from 'react-native-tts';
 
-export default function App() {
+function Rnvoice(props){
+  const handleVoice = ttsText => {
+    Tts.speak(ttsText);
+  };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+        <Text style={styles.text} onPress={() => handleVoice('bruh')}>
+          bruh
+        </Text>
+      </View>
   );
 }
 
@@ -18,4 +22,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    fontSize: 22,
+  }
 });
+export default Rnvoice;
