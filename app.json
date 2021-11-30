@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "TutorialReactNative",
-    "slug": "TutorialReactNative",
+    "name": "Questa",
+    "slug": "Questa",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/questa.png",
+    "icon": "./assets/questaIcon.png",
     "splash": {
       "image": "./assets/splashimg.png",
       "resizeMode": "contain",

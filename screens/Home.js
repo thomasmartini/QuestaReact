@@ -12,7 +12,7 @@ function Home({ navigation }) {
                 Rotterdam
             </Text>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Questionnaire')}
+            onPress={() => navigation.navigate('Questions')}
             style={[styles.mainButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.mainText2}>
                     Ga naar je vragenlijst!
