@@ -23,14 +23,14 @@ function Home({ navigation }) {
                 Nog in te vullen
             </Text>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Questionnaire')}
+            onPress={() => navigation.navigate('Questions')}
             style={[styles.toFillButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.toFillText2}>
                     Ga naar je vragenlijst!
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Questionnaire')}
+            onPress={() => navigation.navigate('Questions')}
             style={[styles.toFillButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.toFillText2}>
                     Ga naar je vragenlijst!
@@ -42,14 +42,14 @@ function Home({ navigation }) {
                 Ingevuld
             </Text>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Questionnaire')}
+            onPress={() => navigation.navigate('Questions')}
             style={[styles.filledButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.filledText2}>
                     Ga naar je vragenlijst!
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Questionnaire')}
+            onPress={() => navigation.navigate('Questions')}
             style={[styles.filledButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.filledText2}>
                     Ga naar je vragenlijst!
