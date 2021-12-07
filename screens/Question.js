@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 
 
-function Questions({ navigation }) {
-
-    
+function Question({ navigation }) { 
     //tts
     const speak = () => {
         const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
@@ -92,6 +90,9 @@ function Questions({ navigation }) {
                 <TouchableOpacity onPress={alertPhoto}><Image style={styles.camera}  source={require('../assets/icons/camera.png')} /></TouchableOpacity>
                 <TouchableOpacity onPress={speak}><Image style={styles.microphone} source={require('../assets/icons/microphone.png')} /></TouchableOpacity>
             </View>
+            <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question2')}>
+              <Text style={styles.textButton}>Volgende Vraag</Text>
+            </Pressable>
             <View style={styles.iconRow}>
                 {imageCam && <Image source={{ uri: imageCam }} style={{ width: 200, height: 200 }} />}
                 {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
@@ -143,6 +144,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10,
     },
+    buttonNext:{
+      marginTop: 30,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 32,
+      borderRadius: 4,
+      elevation: 3,
+      width: "80%",
+      backgroundColor: '#111329',
+    },
+    textButton:{
+      fontSize: 16,
+      lineHeight: 21,
+      letterSpacing: 0.25,
+      color: 'white',
+    },
     camera:{
         width: 50,
         height: 50,
@@ -155,4 +173,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Questions;	
+export default Question;	
