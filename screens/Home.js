@@ -9,7 +9,7 @@ function Home({ navigation }) {
         <View style={styles.background}>
             {/* Weergave van de huidige in te vullen vragenlijst */}
             <Text style={styles.mainText}>
-                Rotterdam
+                Rotterdam Centraal
             </Text>
             <TouchableOpacity 
             onPress={() => navigation.navigate('Question')}
