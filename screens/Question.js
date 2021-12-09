@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable } from 'react-native';
+import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable, Button } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 
 
 function Question({ navigation }) { 
+    const [shouldShow, setShouldShow] = useState(null);
     //tts
     const speak = () => {
         const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
@@ -31,15 +32,13 @@ function Question({ navigation }) {
         }
       ]
     );
+    
 
     // checking permissions
     useEffect(() => {
       (async () => {
         if (Platform.OS !== 'web') {
           const { status } = await ImagePicker.getCameraPermissionsAsync();
-          if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-          }
         }
       })();
     }, []);
@@ -82,13 +81,17 @@ function Question({ navigation }) {
                     Vraag 1
                 </Text>
                 <Text style={styles.questionBody}>
-                    Hoe was je ervaring van Rotterdam Centraal?
+                  Kon je de winkel vinden? Hoe is de route hiernaar toe?
                 </Text>
+                {shouldShow ?
+                  (   
+                    <Image style={styles.microphoneRed} source={require('../assets/icons/microphoneRed.png')} />
+                ) : true}
             </View>
                 <TextInput style={styles.inputField} />
             <View style={styles.iconRow}>
                 <TouchableOpacity onPress={alertPhoto}><Image style={styles.camera}  source={require('../assets/icons/camera.png')} /></TouchableOpacity>
-                <TouchableOpacity onPress={speak}><Image style={styles.microphone} source={require('../assets/icons/microphone.png')} /></TouchableOpacity>
+                <TouchableOpacity onPressIn={() => setShouldShow(!shouldShow)} onPressOut={() => setShouldShow(!shouldShow)}><Image style={styles.microphone} source={require('../assets/icons/microphone.png')} /></TouchableOpacity>
             </View>
             <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question2')}>
               <Text style={styles.textButton}>Volgende Vraag</Text>
@@ -171,6 +174,13 @@ const styles = StyleSheet.create({
         height: 50,
         marginLeft: 25,
     },
+    microphoneRed:{
+      marginTop: 20,
+      width: 50,
+      height: 50,
+      justifyContent: 'center',
+      alignSelf: 'center',  
+  },
 })
 
 export default Question;	

@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 
 
-function Question2({ navigation }) { 
+function Question4({ navigation }) { 
     //tts
     const speak = () => {
         const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
@@ -79,10 +79,10 @@ function Question2({ navigation }) {
       <ScrollView contentContainerStyle={styles.ScrollView}>
           <View style={styles.questionBackground}>
               <Text style={styles.questionTitle}>
-                  Vraag 2
+                  Vraag 4
               </Text>
               <Text style={styles.questionBody}>
-                Is voor jou duidelijk wat je kunt kopen en hoe duur het is? 
+                Hoe kom je binnen? Zijn hierbij obstakels?
               </Text>
           </View>
               <TextInput style={styles.inputField} />
@@ -90,7 +90,7 @@ function Question2({ navigation }) {
               <TouchableOpacity onPress={alertPhoto}><Image style={styles.camera}  source={require('../assets/icons/camera.png')} /></TouchableOpacity>
               <TouchableOpacity onPress={speak}><Image style={styles.microphone} source={require('../assets/icons/microphone.png')} /></TouchableOpacity>
           </View>
-          <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question3')}>
+          <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question5')}>
             <Text style={styles.textButton}>Volgende Vraag</Text>
           </Pressable>
           <View style={styles.iconRow}>
@@ -173,4 +173,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Question2;	
+export default Question4;	
