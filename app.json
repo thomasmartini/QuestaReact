@@ -6,9 +6,9 @@
     "orientation": "default",
     "icon": "./assets/questaIcon.png",
     "splash": {
-      "image": "./assets/splashimg.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2B50EC"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +22,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/questaIcon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#2B50EC"
       },
       "package": "com.rednas14.Questa"
     },

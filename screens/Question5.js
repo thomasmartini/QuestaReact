@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable } from 'react-native';
+import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable, Button } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 
 
 function Question5({ navigation }) { 
+    const [shouldShow, setShouldShow] = useState(null);
+    const [shouldShowText, setShouldShowText] = useState(null);
+
     //tts
-    const speak = () => {
-        const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
-        Speech.speak(thingToSay, {language: "nl-NL",});
-        console.log(Speech.getAvailableVoicesAsync)
-      };
+    // const speak = () => {
+    //     const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
+    //     Speech.speak(thingToSay, {language: "nl-NL",});
+    //     console.log(Speech.getAvailableVoicesAsync)
+    //   };
 
     //setting the state for the camera and file sorting
     const [image, setImage] = useState(null);
@@ -31,15 +34,11 @@ function Question5({ navigation }) {
         }
       ]
     );
-
     // checking permissions
     useEffect(() => {
       (async () => {
         if (Platform.OS !== 'web') {
-          const { status } = await ImagePicker.getCameraPermissionsAsync();
-          if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-          }
+          const { status } = await ImagePicker.getCameraPermissionsAsync(); 
         }
       })();
     }, []);
@@ -84,11 +83,23 @@ function Question5({ navigation }) {
               <Text style={styles.questionBody}>
                 Hoe ervaar jij de winkel? Prettig/onprettig in gebruik? Waarom?
               </Text>
+              {shouldShow ? ( <Image style={styles.microphoneRed} source={require('../assets/icons/microphoneRed.png')} /> ) : true}
           </View>
-              <TextInput style={styles.inputField} />
+            {shouldShowText ? ( <TextInput style={styles.inputField} placeholder="Vul hier je antwoord in" /> ) : true}
           <View style={styles.iconRow}>
-              <TouchableOpacity onPress={alertPhoto}><Image style={styles.camera}  source={require('../assets/icons/camera.png')} /></TouchableOpacity>
-              <TouchableOpacity onPress={speak}><Image style={styles.microphone} source={require('../assets/icons/microphone.png')} /></TouchableOpacity>
+
+              <TouchableOpacity onPress={alertPhoto}>
+                <Image style={styles.camera}  source={require('../assets/icons/camera.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPressIn={() => setShouldShowText(!shouldShowText)}>
+                <Image style={styles.font} source={require('../assets/icons/font.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPressIn={() => setShouldShow(!shouldShow)} onPressOut={() => setShouldShow(!shouldShow)}>
+                <Image style={styles.microphone} source={require('../assets/icons/microphone.png')} />
+              </TouchableOpacity>
+
           </View>
           <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question6')}>
             <Text style={styles.textButton}>Volgende Vraag</Text>
@@ -98,78 +109,87 @@ function Question5({ navigation }) {
               {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
           </View>
       </ScrollView>
-      );
+        );
 }
 
 const styles = StyleSheet.create({
-  ScrollView: {
-      flexGrow: 1,
-      maxHeight: "150%",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      backgroundColor: "#fff",
-      overflow: "scroll",
-  },
-  background: {
-      justifyContent: "flex-start",
-      alignItems: "center",
-      backgroundColor: "#fff",
-  },
-  questionBackground:{
-      width: "100%",
-      height: "50%",
-      backgroundColor: "#111329",
-  },
-  questionTitle:{
-      textAlign: "center",
-      paddingTop: 40,
-      fontSize: 30,
-      color: "white",
-  },
-  questionBody:{
-      textAlign: "center",
-      paddingTop: 75,
-      fontSize: 30,
-      color: "white",
-  },
-  inputField:{
-      paddingLeft: 8,
-      marginTop: 20,
-      borderColor: "#111329",
-      borderWidth: 2,
-      borderRadius: 3,
+    ScrollView: {
+        flexGrow: 1,
+        maxHeight: "200%",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        backgroundColor: "#fff",
+        overflow: "scroll",
+    },
+    questionBackground:{
+        width: "100%",
+        height: "50%",
+        backgroundColor: "#2B50EC",
+        minHeight: "50%",
+    },
+    questionTitle:{
+        textAlign: "center",
+        paddingTop: 40,
+        fontSize: 30,
+        color: "white",
+    },
+    questionBody:{
+        textAlign: "center",
+        paddingTop: 75,
+        fontSize: 30,
+        color: "white",
+    },
+    inputField:{
+        paddingLeft: 8,
+        marginTop: 20,
+        borderColor: "#111329",
+        borderWidth: 2,
+        borderRadius: 3,
+        width: "80%",
+    },
+    iconRow:{
+        flexDirection: 'row',
+        marginTop: 10,
+    },
+    buttonNext:{
+      marginTop: 30,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 32,
+      borderRadius: 4,
+      elevation: 3,
       width: "80%",
-  },
-  iconRow:{
-      flexDirection: 'row',
-      marginTop: 10,
-  },
-  buttonNext:{
-    marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    width: "80%",
-    backgroundColor: '#111329',
-  },
-  textButton:{
-    fontSize: 16,
-    lineHeight: 21,
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  camera:{
+      backgroundColor: '#2B50EC',
+    },
+    textButton:{
+      fontSize: 16,
+      lineHeight: 21,
+      letterSpacing: 0.25,
+      color: 'white',
+    },
+    camera:{
+        width: 50,
+        height: 50,
+        marginRight: 25,
+    },
+    font:{
       width: 50,
       height: 50,
       marginRight: 25,
+      marginLeft: 25,
   },
-  microphone:{
+    microphone:{
+        width: 50,
+        height: 50,
+        marginLeft: 25,
+    },
+    microphoneRed:{
+      marginTop: 20,
       width: 50,
       height: 50,
-      marginLeft: 25,
+      justifyContent: 'center',
+      alignSelf: 'center',  
   },
 })
 

@@ -65,20 +65,20 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-start",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: "#2B50EC",
     },
 
     mainText:{
         marginTop: 10,
         fontSize: 40,
-        color: "black",
+        color: "#fff",
     },
 
     mainButton:{
         marginTop: 10,
         width: "90%",
         height: 80,
-        backgroundColor: "#2B50EC",
+        backgroundColor: "#111329",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 5,
@@ -93,21 +93,21 @@ const styles = StyleSheet.create({
     toFillText:{
         marginTop: 20,
         fontSize: 30,
-        color: "black",
+        color: "#fff",
     },
 
     toFillButton:{
         marginTop: 10,
         width: "90%",
         height: 80,
-        backgroundColor: "#111329",
+        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 5,
     },
 
     toFillText2:{
-        color: "#fff",
+        color: "#111329",
         fontFamily: "sans-serif-condensed",
         fontSize: 22,
     },
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     filledText:{
         marginTop: 20,
         fontSize: 30,
-        color: "black",
+        color: "#fff",
     },
 
     filledButton:{

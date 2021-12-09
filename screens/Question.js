@@ -6,12 +6,14 @@ import * as Speech from 'expo-speech';
 
 function Question({ navigation }) { 
     const [shouldShow, setShouldShow] = useState(null);
+    const [shouldShowText, setShouldShowText] = useState(null);
+
     //tts
-    const speak = () => {
-        const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
-        Speech.speak(thingToSay, {language: "nl-NL",});
-        console.log(Speech.getAvailableVoicesAsync)
-      };
+    // const speak = () => {
+    //     const thingToSay = 'Hoe was je ervaring van Rotterdam Centraal?';
+    //     Speech.speak(thingToSay, {language: "nl-NL",});
+    //     console.log(Speech.getAvailableVoicesAsync)
+    //   };
 
     //setting the state for the camera and file sorting
     const [image, setImage] = useState(null);
@@ -32,13 +34,11 @@ function Question({ navigation }) {
         }
       ]
     );
-    
-
     // checking permissions
     useEffect(() => {
       (async () => {
         if (Platform.OS !== 'web') {
-          const { status } = await ImagePicker.getCameraPermissionsAsync();
+          const { status } = await ImagePicker.getCameraPermissionsAsync(); 
         }
       })();
     }, []);
@@ -75,53 +75,57 @@ function Question({ navigation }) {
       }
     };
     return (
-        <ScrollView contentContainerStyle={styles.ScrollView}>
-            <View style={styles.questionBackground}>
-                <Text style={styles.questionTitle}>
-                    Vraag 1
-                </Text>
-                <Text style={styles.questionBody}>
-                  Kon je de winkel vinden? Hoe is de route hiernaar toe?
-                </Text>
-                {shouldShow ?
-                  (   
-                    <Image style={styles.microphoneRed} source={require('../assets/icons/microphoneRed.png')} />
-                ) : true}
-            </View>
-                <TextInput style={styles.inputField} />
-            <View style={styles.iconRow}>
-                <TouchableOpacity onPress={alertPhoto}><Image style={styles.camera}  source={require('../assets/icons/camera.png')} /></TouchableOpacity>
-                <TouchableOpacity onPressIn={() => setShouldShow(!shouldShow)} onPressOut={() => setShouldShow(!shouldShow)}><Image style={styles.microphone} source={require('../assets/icons/microphone.png')} /></TouchableOpacity>
-            </View>
-            <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question2')}>
-              <Text style={styles.textButton}>Volgende Vraag</Text>
-            </Pressable>
-            <View style={styles.iconRow}>
-                {imageCam && <Image source={{ uri: imageCam }} style={{ width: 200, height: 200 }} />}
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-            </View>
-        </ScrollView>
+      <ScrollView contentContainerStyle={styles.ScrollView}>
+          <View style={styles.questionBackground}>
+              <Text style={styles.questionTitle}>
+                  Vraag 1
+              </Text>
+              <Text style={styles.questionBody}>
+                Kon je de winkel vinden? Hoe is de route hiernaar toe?
+              </Text>
+              {shouldShow ? ( <Image style={styles.microphoneRed} source={require('../assets/icons/microphoneRed.png')} /> ) : true}
+          </View>
+            {shouldShowText ? ( <TextInput style={styles.inputField} placeholder="Vul hier je antwoord in" /> ) : true}
+          <View style={styles.iconRow}>
+
+              <TouchableOpacity onPress={alertPhoto}>
+                <Image style={styles.camera}  source={require('../assets/icons/camera.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPressIn={() => setShouldShowText(!shouldShowText)}>
+                <Image style={styles.font} source={require('../assets/icons/font.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPressIn={() => setShouldShow(!shouldShow)} onPressOut={() => setShouldShow(!shouldShow)}>
+                <Image style={styles.microphone} source={require('../assets/icons/microphone.png')} />
+              </TouchableOpacity>
+
+          </View>
+          <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question2')}>
+            <Text style={styles.textButton}>Volgende Vraag</Text>
+          </Pressable>
+          <View style={styles.iconRow}>
+              {imageCam && <Image source={{ uri: imageCam }} style={{ width: 200, height: 200 }} />}
+              {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+          </View>
+      </ScrollView>
         );
 }
 
 const styles = StyleSheet.create({
     ScrollView: {
         flexGrow: 1,
-        maxHeight: "150%",
+        maxHeight: "200%",
         justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: "#fff",
         overflow: "scroll",
     },
-    background: {
-        justifyContent: "flex-start",
-        alignItems: "center",
-        backgroundColor: "#fff",
-    },
     questionBackground:{
         width: "100%",
         height: "50%",
-        backgroundColor: "#111329",
+        backgroundColor: "#2B50EC",
+        minHeight: "50%",
     },
     questionTitle:{
         textAlign: "center",
@@ -156,7 +160,7 @@ const styles = StyleSheet.create({
       borderRadius: 4,
       elevation: 3,
       width: "80%",
-      backgroundColor: '#111329',
+      backgroundColor: '#2B50EC',
     },
     textButton:{
       fontSize: 16,
@@ -169,6 +173,12 @@ const styles = StyleSheet.create({
         height: 50,
         marginRight: 25,
     },
+    font:{
+      width: 50,
+      height: 50,
+      marginRight: 25,
+      marginLeft: 25,
+  },
     microphone:{
         width: 50,
         height: 50,
