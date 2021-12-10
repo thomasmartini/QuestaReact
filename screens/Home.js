@@ -15,7 +15,7 @@ function Home({ navigation }) {
             onPress={() => navigation.navigate('Question')}
             style={[styles.mainButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.mainText2}>
-                    Ga naar je vragenlijst!
+                    Ga naar je huidige vragenlijst!
                 </Text>
             </TouchableOpacity>
             {/* Weergave van de nog in te vullen vragenlijsten */}
@@ -26,14 +26,14 @@ function Home({ navigation }) {
             onPress={() => navigation.navigate('Question')}
             style={[styles.toFillButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.toFillText2}>
-                    Ga naar je vragenlijst!
+                    Ga naar je nog in te vullen vragenlijst!
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity 
             onPress={() => navigation.navigate('Question')}
             style={[styles.toFillButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.toFillText2}>
-                    Ga naar je vragenlijst!
+                    Ga naar je nog in te vullen vragenlijst!
                 </Text>
             </TouchableOpacity>
 
@@ -45,14 +45,14 @@ function Home({ navigation }) {
             onPress={() => navigation.navigate('Question')}
             style={[styles.filledButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.filledText2}>
-                    Ga naar je vragenlijst!
+                    Ga naar je nog in te vullen vragenlijst!
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity 
             onPress={() => navigation.navigate('Question')}
             style={[styles.filledButton, styles.shadowProp, styles.elevation]}>
                 <Text style={styles.filledText2}>
-                    Ga naar je vragenlijst!
+                    Ga naar je nog in te vullen vragenlijst!
                 </Text>
             </TouchableOpacity>
         </View>  
@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
 
     mainText2:{
         color: "#fff",
-        fontFamily: "sans-serif-condensed",
         fontSize: 22,
     },
 
@@ -108,7 +107,6 @@ const styles = StyleSheet.create({
 
     toFillText2:{
         color: "#111329",
-        fontFamily: "sans-serif-condensed",
         fontSize: 22,
     },
 
@@ -130,7 +128,6 @@ const styles = StyleSheet.create({
 
     filledText2:{
         color: "#fff",
-        fontFamily: "sans-serif-condensed",
         fontSize: 22,
     },
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable, Button } from 'react-native';
+import { Text, TextInput, View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, Pressable, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 
@@ -38,7 +38,10 @@ function Question({ navigation }) {
     useEffect(() => {
       (async () => {
         if (Platform.OS !== 'web') {
-          const { status } = await ImagePicker.getCameraPermissionsAsync(); 
+          const { status } = await ImagePicker.getCameraPermissionsAsync();
+          if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+          } 
         }
       })();
     }, []);
