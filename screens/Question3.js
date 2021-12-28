@@ -86,19 +86,25 @@ function Question3({ navigation }) {
               {shouldShow ? ( <Image style={styles.microphoneRed} source={require('../assets/icons/microphoneRed.png')} /> ) : true}
           </View>
             {shouldShowText ? ( <TextInput style={styles.inputField} placeholder="Vul hier je antwoord in" /> ) : true}
-          <View style={styles.iconRow}>
+            <View style={styles.iconRow}>
 
-              <TouchableOpacity onPress={alertPhoto}>
-                <Image style={styles.camera}  source={require('../assets/icons/camera.png')} />
-              </TouchableOpacity>
+            <TouchableOpacity
+            accessibilityLabel='Foto Nemen' 
+            onPress={alertPhoto}>
+              <Image style={styles.camera}  source={require('../assets/icons/camera.png')} />
+            </TouchableOpacity>
 
-              <TouchableOpacity onPressIn={() => setShouldShowText(!shouldShowText)}>
-                <Image style={styles.font} source={require('../assets/icons/font.png')} />
-              </TouchableOpacity>
+            <TouchableOpacity 
+            accessibilityLabel='Tekstveld openen' 
+            onPressIn={() => setShouldShowText(!shouldShowText)}>
+              <Image style={styles.font} source={require('../assets/icons/font.png')} />
+            </TouchableOpacity>
 
-              <TouchableOpacity onPressIn={() => setShouldShow(!shouldShow)} onPressOut={() => setShouldShow(!shouldShow)}>
-                <Image style={styles.microphone} source={require('../assets/icons/microphone.png')} />
-              </TouchableOpacity>
+            <TouchableOpacity 
+            accessibilityLabel='Geluid Opnemen' 
+            onPressIn={() => setShouldShow(!shouldShow)} onPressOut={() => setShouldShow(!shouldShow)}>
+              <Image style={styles.microphone} source={require('../assets/icons/microphone.png')} />
+            </TouchableOpacity>
 
           </View>
           <Pressable style={styles.buttonNext} onPress={() => navigation.navigate('Question4')}>
